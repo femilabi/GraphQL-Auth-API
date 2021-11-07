@@ -49,6 +49,9 @@ module.exports = async function (parents, args) {
                     status: {
                         type: "success",
                         msg: "Your activation link has been sent! Please check your email box now including your spam folder. If you are still unable to get the activation email, please contact support."
+                    },
+                    data: {
+                        sms_code: hash.sms_code,
                     }
                 }
             } else {
