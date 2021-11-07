@@ -2,4 +2,4 @@
 
 A Simple Authentication System with GraphQL
 
-Check it the API on https://graphql.femipeter.xyz
+Check it the API on https://graphql.femipeter.xyz/graphql
