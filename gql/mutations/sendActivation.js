@@ -13,6 +13,7 @@ module.exports = async function (parents, args) {
         .findByEmail(email)
         .then(async (user) => {
             if (user && user.get("active") == 0) {
+                let data = null;
                 if (
                     getCurrentTime() >=
                     Number(user.getMeta("last_activation_email_time")) + 60 * 15
@@ -43,6 +44,14 @@ module.exports = async function (parents, args) {
 
                     // Update last email time
                     user.setMeta("last_activation_email_time", getCurrentTime());
+
+                    // Create hash
+                    
+                    data = {
+                        variant_type: "ActivationCodeHash",
+                        sms_code: hash.sms_code,
+                        hash: hash.hash,
+                    }
                 }
 
                 return {
@@ -50,9 +59,7 @@ module.exports = async function (parents, args) {
                         type: "success",
                         msg: "Your activation link has been sent! Please check your email box now including your spam folder. If you are still unable to get the activation email, please contact support."
                     },
-                    data: {
-                        sms_code: hash.sms_code,
-                    }
+                    data
                 }
             } else {
                 return {

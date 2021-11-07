@@ -32,7 +32,12 @@ module.exports = gql`
     current_user: User
   }
 
-  union ResponseData = AuthData
+  type ActivationCodeHash {
+    sms_code: String
+    hash: String
+  }
+
+  union ResponseData = AuthData | ActivationCodeHash
 
   type CustomResponse {
     status: ResponseStatus!
